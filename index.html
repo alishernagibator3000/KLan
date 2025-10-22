@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="ky">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сүйлөм мүчөлөрү</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5e6d3;
+            overflow: hidden;
+        }
+
+        /* Hide scrollbar for all browsers */
+        * {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        
+        *::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+        
+        .presentation {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slide {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #f5e6d3 0%, #e8d4bd 100%);
+            padding: 60px 80px;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow-y: auto;
+        }
+        
+        .slide.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 50px;
+            margin-bottom: 35px;
+            color: #2c2c2c;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        h2 {
+            font-size: 28px;
+            margin: 18px 0 12px;
+            color: #3d3d3d;
+            font-weight: bold;
+        }
+        
+        h3 {
+            font-size: 24px;
+            margin: 12px 0 8px;
+            color: #4d4d4d;
+            font-weight: bold;
+        }
+        
+        p, li {
+            font-size: 19px;
+            line-height: 1.6;
+            color: #2c2c2c;
+            margin-bottom: 10px;
+        }
+        
+        ul {
+            margin-left: 40px;
+        }
+        
+        .content-box {
+            background: rgba(255, 255, 255, 0.4);
+            padding: 28px;
+            border-radius: 18px;
+            margin: 15px 0;
+        }
+        
+        .example {
+            background: rgba(139, 111, 71, 0.15);
+            padding: 16px;
+            border-radius: 12px;
+            margin: 10px 0;
+            font-style: italic;
+        }
+        
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 25px;
+            z-index: 1000;
+        }
+        
+        .nav-btn {
+            background: #8b6f47;
+            color: #f5e6d3;
+            border: none;
+            padding: 15px 35px;
+            font-size: 18px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        .nav-btn:hover {
+            background: #6d5638;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .slide-counter {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            background: #8b6f47;
+            color: #f5e6d3;
+            padding: 12px 25px;
+            border-radius: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 1000;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 2px solid rgba(139, 111, 71, 0.2);
+            font-size: 17px;
+        }
+        
+        th {
+            background: rgba(139, 111, 71, 0.3);
+            font-weight: bold;
+            color: #2c2c2c;
+            font-size: 19px;
+        }
+        
+        .title-slide {
+            justify-content: center;
+        }
+        
+        .title-slide h1 {
+            font-size: 72px;
+            margin-bottom: 50px;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .column {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 25px;
+            border-radius: 15px;
+        }
+        
+        strong {
+            color: #8b6f47;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide-counter">
+        <span id="currentSlide">1</span> / <span id="totalSlides">14</span>
+    </div>
+    
+    <div class="presentation">
+
+        <div class="slide active title-slide">
+            <h1>Сүйлөм мүчөлөрү</h1>
+            <p style="font-size: 24px; text-align: center; font-weight: 600; margin-top: 50px;">Амир, Али-Нур, Алишер, Манас</p>
+        </div>
+        <!-- Slide 1 -->
+        <div class="slide">
+            <h1>Негизги түшүнүк</h1>
+            <div class="content-box" style="max-width: 950px; margin: 0 auto;">
+                <p style="font-size: 24px; text-align: center;"><strong>Сүйлөм мүчөлөрү</strong> — бул сүйлөмдүн маанисин түзүп турган сөздөр же сөз айкаштары.</p>
+                <p style="font-size: 24px; text-align: center;">Ар бир мүчө сүйлөмдө өзүнүн кызматын аткарат.</p>
+                <p style="font-size: 24px; text-align: center;">Сүйлөм мүчөлөрү баш жана айкындооч болуп бөлүнөт.</p>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+            <h1>Баш мүчөлөрү: Ээ</h1>
+            <div class="content-box">
+                <p><strong>Ээ</strong> - сүйлөмдө сөз болуп жаткан жакты, затты, окуяны, же кубулушту билдирүүчү жана баяндооч аркылуу туюндурулган бардык белгилерди ишке ашыруучу баш мүчө ээ деп аталат.</p>
+                <p><strong>Ким? Эмне?</strong> деген суроолорго жооп берет.</p>
+            </div>
+            
+            <div class="example">
+                <strong>Мисалдар:</strong>
+                <ul>
+                    <li><strong>Шах</strong> келди. (<strong>Ким?</strong> - Шах)</li>
+                    <li><strong>Алар</strong> ырдашты. (<strong>Кимдер?</strong> - Алар)</li>
+                    <li><strong>Кар</strong> жаады. (<strong>Эмне?</strong> - Кар)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+            <h1>Баш мүчөлөрү: Баяндооч</h1>
+            <div class="content-box">
+                <p><strong>Баяндооч</strong> - сүйлөм тутумунда грамматикалык жактан <strong>ээге багынып</strong>, анын <strong>ким, эмне экендигин, кыймыл-аракетин, мүнөзүн, абалын, сынын, сыпатын</strong> ж.б. билдирген баш мүчө.</p>
+                <p><strong>Эмне кылды? Кандай? Ким? Эмне?</strong> деген суроолорго жооп берет.</p>
+            </div>
+            
+            <div class="example">
+                <strong>Мисалдар:</strong>
+                <ul>
+                    <li>Шах <strong>ырдады</strong>. (Эмне кылды? - ырдады)</li>
+                    <li>Алар <strong>келишти</strong>. (Эмне кылышты? - келишти)</li>
+                    <li>Аба <strong>таза</strong>. (Кандай? - таза)</li>
+                    <li>Ал <strong>мугалим</strong>. (Ким? - мугалим)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide">
+            <h1>Ээнин түрлөрү</h1>
+            
+            <div class="two-column">
+                <div class="column">
+                    <h3>Жөнөкөй ээ:</h3>
+                    <p>Бир сөз (зат атооч, ат атооч ж.б.) менен туюнтулат.</p>
+                    <div class="example">
+                        <em>Мисалы: Байкем келди. Мен окуйм.</em>
+                    </div>
+                </div>
+                
+                <div class="column">
+                    <h3>Татаал ээ:</h3>
+                    <p>Эки же андан көп сөз айкашы менен туюнтулат жана бир маанини билдирет.</p>
+                    <div class="example">
+                        <em>Мисалы: Эржан жана Бакыт футбол ойношту.</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide">
+            <h1>Баяндоочтун түрлөрү</h1>
+            
+            <div class="content-box">
+                <h3>A. Этиштик баяндооч (Кыймыл-аракет):</h3>
+                <p><strong>• Жөнөкөй этиштик:</strong> Бир этиш менен туюнтулат. <br> <em>Мисалы: Ал барды.</em></p>
+                <p><strong>• Татаал этиштик:</strong> Татаал этиштер же эки этиштин айкашы менен туюнтулат. <br> <em>Мисалы: Окуп бүттү. Айтып берди.</em></p>
+            </div>
+            
+            <div class="content-box">
+                <h3>Б. Атоочтук баяндооч (Сапат, абал, зат):</h3>
+                <p><strong>• Жөнөкөй атоочтук:</strong> Атооч сөздөр менен туюнтулат (көбүнчө жактык мүчө менен). <br> <em>Мисалы: Аба таза. Мен студентмин.</em></p>
+                <p><strong>• Татаал атоочтук:</strong> Атооч сөз + байламта этиш (бол, тур, экен, эмес) менен туюнтулат. <br> <em>Мисалы: Ал мугалим болгон. Бул өтө маанилүү экен.</em></p>
+            </div>
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="slide">
+            <h1>Айкындооч сүйлөм мүчөлөрү</h1>
+            
+            <div class="content-box">
+                <h3>1. Толуктооч</h3>
+                <p>Иш-аракет кайсы нерсеге багытталганын көрсөтөт.</p>
+                <p><strong>Суроолору:</strong> Кимди? Эмнени? Кимге? Эмнеге? Кимден? Эмнеден? Ким менен? Эмне менен?</p>
+                <div class="example"><em>Мисалы: Алишер китепти окуп жатат. (эмнени окуп жатат? - китепти)</em></div>
+            </div>
+            
+            <div class="content-box">
+                <h3>2. Аныктооч</h3>
+                <p>Көбүнчө <strong>ээни</strong> же башка <strong>атооч мүчөнү</strong> аныктап, анын сапатын, санын, кимге таандык экенин, же башка белгисин билдирет.</p>
+                <p><strong>Суроолору:</strong> Кандай? Кайсы? Кимдин? Эмненин? Канча?</p>
+                <div class="example"><em>Мисалы: Кызыл алма. (алма кандай? - кызыл)</em></div>
+            </div>
+        </div>
+
+        <!-- Slide 7 -->
+        <div class="slide">
+            <h1>Айкындооч сүйлөм мүчөлөрү</h1>
+            
+            <div class="content-box" style="max-width: 1100px; margin: 15px auto;">
+                <h3>3. Бышыктооч</h3>
+                <p>Баяндооч аркылуу туюнтулган кыймыл-аракеттин <strong>ордун, мезгилин, себебин, максатын, сыпатын</strong> же <strong>өлчөмүн</strong> билдирет.</p>
+                <p><strong>Суроолору:</strong> Кайда? Качан? Эмне үчүн? Кантип? Кандайча?</p>
+                <div class="example"><em>Мисалы: Ал эртең тоого барат. (качан? - эртең; кайда? - тоого)</em></div>
+            </div>
+        </div>
+
+        <!-- Slide 8 -->
+        <div class="slide">
+            <h1>Аныктоочтун түрлөрү</h1>
+            
+            <div class="content-box" style="max-width: 1200px; margin: 15px auto;">
+                <p><strong>1. Сапаттык аныктооч (Кандай?):</strong> <em>Мисалы: Жаңы көйнөк, чоң үй.</em></p>
+                <p><strong>2. Сандык аныктооч (Канча? Нечен?):</strong> <em>Мисалы: Үч киши, бешинчи кабат.</em></p>
+                <p><strong>3. Таандык аныктооч (Кимдин? Эмненин?):</strong> <em>Мисалы: Айгүлдүн китеби, мектептин короосу.</em></p>
+                <p><strong>4. Заттык (Атоочтук) аныктооч (Кайсы?):</strong> <em>Мисалы: Алтын шакек, темир дарбаза.</em></p>
+                <p><strong>5. Ат атоочтук аныктооч (Кайсы?):</strong> <em>Мисалы: Бул жумуш, ар бир окуучу.</em></p>
+            </div>
+        </div>
+
+        <!-- Slide 9 -->
+        <div class="slide">
+            <h1>Толуктоочтун түрлөрү</h1>
+            
+            <div class="two-column">
+                <div class="column">
+                    <h3>1. Түз толуктооч</h3>
+                    <p><strong>(Кимди? Эмнени?)</strong></p>
+                    <p>Табыш жөндөмөсү</p>
+                    <div class="example">
+                        <em>Мисалдар: Сууну ичти, досумду көрдүм.</em>
+                    </div>
+                </div>
+                
+                <div class="column">
+                    <h3>2. Кысым толуктооч</h3>
+                    <p><strong>(Кимге/Эмнеге? Кимден/Эмнеден? Ким менен/Эмне менен?)</strong></p>
+                    <p>Кыя, барыш, чыгыш, же атооч жөндөмөлөр</p>
+                    <div class="example">
+                        <em>Мисалдар: Апама айттым, ишинен чарчады.</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 10 -->
+        <div class="slide">
+            <h1>Бышыктоочтун түрлөрү</h1>
+            
+            <div class="content-box" style="max-width: 1200px; margin: 15px auto;">
+                <p><strong>1. Орун бышыктооч (Кайда? Кайсы жерде?):</strong> <em>Мисалы: Үйгө барды, көчөдө ойноду.</em></p>
+                <p><strong>2. Мезгил бышыктооч (Качан? Качандан бери?):</strong> <em>Мисалы: Эртең менен келди, бир сааттан кийин барат.</em></p>
+                <p><strong>3. Сын-сыпат бышыктооч (Кантип? Кандайча?):</strong> <em>Мисалы: Шашып сүйлөдү, күлүп карады.</em></p>
+                <p><strong>4. Себеп бышыктооч (Эмне үчүн? Эмне себептен?):</strong> <em>Мисалы: Ооруганы үчүн калды, чарчагандыктан уктады.</em></p>
+                <p><strong>5. Максат бышыктооч (Эмне максат менен?):</strong> <em>Мисалы: Жардам берүү үчүн келди, окуганы барды.</em></p>
+                <p><strong>6. Өлчөм бышыктооч (Канча? Канчалык?):</strong> <em>Мисалы: Абдан күчтүү, бир аз сүйлөдү.</em></p>
+            </div>
+        </div>
+
+        <!-- Slide 11 -->
+        <div class="slide">
+            <h1>Баш жана айкындооч мүчөлөрдүн айырмасы</h1>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Критерий</th>
+                        <th>Баш мүчөлөр (Ээ, Баяндооч)</th>
+                        <th>Айкындооч мүчөлөр (Аныктооч, Толуктооч, Бышыктооч)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Кызматы</strong></td>
+                        <td>Сүйлөмдүн өзөгүн, грамматикалык негизин түзөт.</td>
+                        <td>Баш мүчөлөрдүн маанисин тактап, кеңейтет.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Жок болсо</strong></td>
+                        <td>Булар жок болсо, сүйлөм курулбайт же мааниси бузулат.</td>
+                        <td>Булар жок болсо да, сүйлөмдүн негизги мааниси сакталат (бирок толук болбойт).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Негизги байланыш</strong></td>
+                        <td>Өз ара предикативдик (Ээ ↔ Баяндооч) байланышта болот.</td>
+                        <td>Баш мүчөлөргө багынып, алардын белгилерин көрсөтөт.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Мисал</strong></td>
+                        <td>Күн чыкты. (Толук маани)</td>
+                        <td>Эртең менен Күн чыкты. (Толукталган маани)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Slide 12 -->
+        <div class="slide">
+            <h1>Сүйлөм мүчөлөрүнүн синтаксистик байланышы</h1>
+            
+            <div class="content-box">
+                <h3>1. Предикативдик байланыш:</h3>
+                <p><strong>Ээ</strong> ↔ <strong>Баяндооч</strong> ортосундагы негизги байланыш.</p>
+                <div class="example"><em>Мисалы: Кыз — гүлдөдү =.</em></div>
+            </div>
+            
+            <div class="content-box">
+                <h3>2. Башкаруу байланышы:</h3>
+                <p><strong>Баяндооч</strong> (же башкаруучу сөз) <strong>Толуктоочту</strong> белгилүү бир жөндөмөдө болууга "башкарат".</p>
+                <div class="example"><em>Мисалы: Китепти — окуду =.</em></div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h1>Сүйлөм мүчөлөрүнүн синтаксистик байланышы</h1>
+
+            <div class="content-box">
+                <h3>3. Ыкташуу байланышы:</h3>
+                <p><strong>Аныктооч</strong> (же <strong>Бышыктооч</strong>) <strong>Баш мүчөлөргө</strong> же башка сөздөргө грамматикалык өзгөрүүсүз, маани жагынан жакын турат.</p>
+                <div class="example"><em>Мисалы: Кызыл ∼∼∼ гүл. Тез ⋅−⋅− басты =.</em></div>
+            </div>
+            
+            <div class="content-box">
+                <h3>4. Таандык байланыш:</h3>
+                <p>Илик жөндөмөдөгү аныктооч → Таандык мүчөлүү сөз ортосундагы байланыш.</p>
+                <div class="example"><em>Мисалы: Атанын ∼∼∼ сөзү.</em></div>
+            </div>
+        </div>
+
+        <!-- Slide 13 -->
+        <div class="slide">
+            <h1>Сүйлөмдү талдоо ырааты</h1>
+            
+            <div class="content-box">
+                <h3>1. Баяндоочту табуу:</h3>
+                <p>Сүйлөмдүн маанилик жана грамматикалык борборун (кыймыл-аракет, абал) аныкта.</p>
+                <div class="example"><em>Суроо: Эмне кылды? Кандай? Ким?</em></div>
+            </div>
+            
+            <div class="content-box">
+                <h3>2. Ээни табуу:</h3>
+                <p>Кыймыл-аракетти ким же эмне аткарганын аныкта.</p>
+                <div class="example"><em>Суроо: Ким? Эмне?</em></div>
+            </div>
+        </div>
+
+        <div class="slide">
+            <h1>Сүйлөмдү талдоо ырааты</h1>
+            
+            <div class="content-box">
+                <h3>3. Негизги айкындоочторду (Бышыктооч/Толуктооч) табуу:</h3>
+                <p>Баяндоочтон суроо берип, анын убактысын, ордун, объектисин тап.</p>
+                <div class="example"><em>Суроо: Кайда? Качан? Эмнени? Кимге?</em></div>
+            </div>
+            
+            <div class="content-box">
+                <h3>4. Аныктоочторду табуу:</h3>
+                <p>Ээден же башка атооч сөздөрдөн суроо берип, алардын сапатын, санын ж.б. аныкта.</p>
+                <div class="example"><em>Суроо: Кандай? Кайсы? Кимдин?</em></div>
+            </div>
+        </div>
+
+        <!-- Slide 14 -->
+        <div class="slide">
+            <h1>Көнүгүүлөр</h1>
+            
+            <div class="content-box">
+                <h3>Сүйлөмдөрдү талдагыла:</h3>
+                <div class="example">
+                    <p><strong>1.</strong> Айылдын балдары футбол, воллейбол ойношот.</p>
+                    <p><strong>2.</strong> Амир, Адилет, Али-Нур кечээ баскетбол ойношту.</p>
+                    <p><strong>3.</strong> Окуучулар кечээ шаардык театрга барышты.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="slide">
+            <h1>Көнүгүүлөр</h1>
+
+            <div class="content-box">
+                <h3>Жооптору:</h3>
+                <p style="line-height: 2;"><strong>1.</strong> Айылдын ∼∼∼ балдары --- футбол ---, воллейбол --- ойношот =.</p>
+                <p style="line-height: 2;"><strong>2.</strong> Амир, --- Адилет, --- Али-Нур --- кечээ ⋅−⋅− баскетбол --- ойношту =.</p>
+                <p style="line-height: 2;"><strong>3.</strong> Окуучулар --- кечээ ⋅−⋅− шаардык ∼∼∼ театрга ⋅−⋅− барышты =.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="navigation">
+        <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">◄ Мурунку</button>
+        <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Кийинки ►</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        
+        document.getElementById('totalSlides').textContent = totalSlides;
+        
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            
+            document.getElementById('currentSlide').textContent = currentSlide + 1;
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+        }
+        
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+        
+        showSlide(0);
+    </script>
+</body>
+</html>
